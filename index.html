@@ -1,0 +1,671 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>ionic Framework</title>
+
+    <meta name="description" content="Famo.us is a free, open source JavaScript framework that helps you create smooth, complex UIs for any screen">
+    <meta name="author" content="Avi Haiat">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+
+    <link rel="stylesheet" href="lib/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="lib/css/font-awesome.css">
+    <link rel="stylesheet" href="css/reveal.min.css">
+    <link rel="stylesheet" href="css/theme/default.css" id="theme">
+
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+        if(window.location.search.match(/print-pdf/gi)) {
+            var link = document.createElement('link');
+            link.rel = 'stylesheet';
+            link.type = 'text/css';
+            link.href = 'css/print/pdf.css';
+            document.getElementsByTagName('head')[0].appendChild(link);
+        }
+    </script>
+
+    <!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+</head>
+
+<body>
+
+    <div class="reveal">
+
+        <div class="footer-logos">
+            <a href="http://yoobic.com" style="position:relative; top:35px; left:28px">
+                <img class="ts no-border" src="img/yoobic.svg" /><small style="position:relative;top:-35px; left:-18px;color:white;letter-spacing:0.4em">YOOBIC</small><small style="font-size:0.3em;position:relative;top:-10px; left:-150px;color:white">Collective intelligence</small>
+            </a>
+            <a href="http://ionicframework.com/" style="position:relative; left:-100px">
+                <img id="ionic-logo" class="ionic no-border" src="img/logo-ionic-white.png" />
+            </a>
+            <a href="http://angularjs.org" style="position:relative; left:-100px">
+                <img class="angularjs no-border" src="img/angularjs.svg" />
+            </a>
+        </div>
+
+        <!-- Any section element inside of this container is displayed as a slide -->
+        <div class="slides">
+            <section>
+                <h2>ionic framework</h2>
+                <p>The beautiful open source framework for developing hybrid mobile apps with HTML5</p>
+                <a href="http://disrupt.famo.us/periodic402/">
+                    <img src="img/logo-ionic-white.png" class="no-border" style="width: 250px; margin-top: 45px;" />
+                </a>
+                <p style="margin-top:100px">
+                    <small>Presented by <br><a href="http://thaiat.github.io">Avi&nbsp;&nbsp;Haiat</a> - <a href="mailto:thaiat@yoobic.com">thaiat@yoobic.com</a></small>
+                </p>
+
+                <aside class="notes">
+                    Notes:
+                </aside>
+            </section>
+
+            <section data-background-color="#000">
+                <h2>Russian Kombat</h2>
+                <iframe width="854" height="510" src="//www.youtube.com/embed/AxOUYJc8OZ8" class="stretch" frameborder="0" allowfullscreen></iframe>
+            </section>
+
+            <section>
+                <h2>Who am I ?</h2>
+                <ul>
+                    <li><span style="font-family:fontawesome;font-style:normal;margin-right:40px" class="fa fa-user"></span>Avi Haiat</li>
+                    <li><span style="font-family:fontawesome;font-style:normal;margin-right:30px" class="fa fa-envelope"></span><a href="mailto:thaiat@yoobic.com">thaiat@yoobic.com</a>
+                    </li>
+                    <li><span style="font-family:fontawesome;font-style:normal;margin-right:40px;margin-left:6px" class="fa fa-map-marker"></span>Tel Aviv</li>
+                    <li><span style="font-family:fontawesome;font-style:normal;margin-right:35px" class="fa fa-twitter"></span>@thaiat</li>
+                    <li><span style="font-family:fontawesome;font-style:normal;margin-right:40px" class="fa fa-rss"></span><a href="https://thaiat.github.io">http://thaiat.github.io</a>
+                    </li>
+                    <li><span style="font-family:fontawesome;font-style:normal;margin-right:40px" class="fa fa-github"></span><a href="https://github.com/thaiat">https://github.com/thaiat</a>
+                    </li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Who am I ?</h2>
+                <p class="fragment" data-fragment-index="3"><strong>Vizelia</strong> bought by <strong>Schneider Electric</strong> in <strong>2011</strong>
+                </p>
+                <div class="row slide-content">
+                    <div class="col-xs-4 fragment" data-fragment-index="1">
+                        <img src="https://cloud.githubusercontent.com/assets/4806944/4645840/b8c48488-546d-11e4-9723-feda99581b83.jpg" alt="">
+                    </div>
+                    <div class="col-xs-4 fragment" data-fragment-index="2">
+                        <img src="https://cloud.githubusercontent.com/assets/4806944/4645842/bd905de8-546d-11e4-96a3-7f9fc011aef3.jpg" alt="">
+                    </div>
+                    <div class="col-xs-4 fragment" data-fragment-index="3">
+                        <img src="https://cloud.githubusercontent.com/assets/4806944/4645844/c001c210-546d-11e4-94be-4e09cbdde110.jpg" alt="">
+                    </div>
+                </div>
+            </section>
+
+         <!--    <section data-state="money">
+
+            </section> -->
+
+
+            <section class="yoobic">
+                <h2 style="color:#3BCBAF">Yoobic</h2>
+                <img class="no-border" src="https://cloud.githubusercontent.com/assets/4806944/4646382/b0f2af82-5472-11e4-808d-de2319ed70aa.png" alt="">
+                <ul>
+                    <li><strong class="strong">Yoobic </strong>is a <strong class="strong">"Mobile productivity App"</strong>
+                    </li>
+                    <li><strong class="strong">Yoobic </strong>simplifies short term logistic processes and transform logistic <strong class="strong">costs</strong> into a stream of <strong class="strong">revenues</strong>
+                    </li>
+                    <li><strong class="strong">Yoobic </strong>is leveraging <strong class="strong">crowdsourced</strong> workforce and harnessing <strong class="strong">geolocation</strong> technology</li>
+                </ul>
+            </section>
+
+            <section data-background="#29AD8E">
+                <div class='row slide-content'>
+                    <div class="col-xs-8">
+                        <img src="https://cloud.githubusercontent.com/assets/4806944/4646509/f4577590-5473-11e4-8c2e-8e7ffff4f9bc.png" alt="" sheight=800 sclass="stretch">
+                    </div>
+                    <div class="col-xs-4">
+                        <video src="img/yoobic_screencast.mov" data-autoplay loop sheight=800></video>
+                    </div>
+                </div>
+            </section>
+
+
+          <!--   <section>
+                <img src="http://www.edenvirginhair.com/wp-content/uploads/2014/08/we-are-recruiting.png" alt="" class="stretch fragment roll-in">
+            </section> -->
+            <section>
+                <h2>More platforms, more problems</h2>
+                <div class='row slide-content'>
+                    <div class="col-xs-4">
+                        <img class="no-border" src="https://cloud.githubusercontent.com/assets/4806944/4646687/8fb4cece-5475-11e4-9bbd-0ccedf573dee.png" alt="">
+                    </div>
+                    <div class="col-xs-4">
+                        <img class="no-border" src="https://cloud.githubusercontent.com/assets/4806944/4646690/9194efd0-5475-11e4-8b5d-2af193854818.png" alt="">
+                    </div>
+                    <div class="col-xs-4">
+                        <img class="no-border" src="https://cloud.githubusercontent.com/assets/4806944/4646693/93688178-5475-11e4-97a0-c4adfed7b30a.png" alt="">
+                    </div>
+                </div>
+                <p>Do we really need to code for multiple platforms ?</p>
+            </section>
+
+
+            <section data-state="facebook">
+                <div class='row slide-content'>
+                    <div class="col-xs-4">
+                    </div>
+                    <div class="col-xs-8" style="top:-200px;left:100px">
+
+                        <blockquote cite="http://searchservervirtualization.techtarget.com/definition/Our-Favorite-Technology-Quotations">
+                            &ldquo;The biggest mistake we've made as a company is betting on HTML5 over native.&rdquo;
+                        </blockquote>
+                        <p>Mark Zuckerberg - 2012</p>
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <section data-state="obama">
+
+            </section>
+
+            <section data-state="louis">
+
+            </section>
+
+            <section>
+                <h2>It's not 2012 anymore</h2>
+                <p>Mobile devices and HTML5 stacks have rapidly evolved</p>
+            </section>
+
+            <section>
+                <h2>Where is ionic stack ?</h2>
+                <img src=" https://cloud.githubusercontent.com/assets/4806944/4737941/2f5c7386-59f9-11e4-942a-ae00b38034d8.png" alt="" class="stretch fragment roll-in">
+
+            </section>
+
+
+            <section>
+                <h2>What is ionic ?</h2>
+                <p>Web technologies you already know and love</p>
+                <div class='row'>
+                    <div class="col-xs-4">
+                        <img class="no-border" src="https://cloud.githubusercontent.com/assets/4806944/4851560/8270c9a2-6073-11e4-83f2-f0655ccc7c43.png" alt="" width=200>
+                    </div>
+                    <div class="col-xs-4">
+                        <img class="no-border" src="https://cloud.githubusercontent.com/assets/4806944/4851562/86983484-6073-11e4-801c-f9ba39fef7dc.png" alt="" width=200>
+                    </div>
+                    <div class="col-xs-4">
+                        <img class="no-border" src="https://cloud.githubusercontent.com/assets/4806944/4851563/892964ca-6073-11e4-8e35-50fc418112bc.png" alt="" width=200>
+                    </div>
+                </div>
+
+                <aside class="notes">
+                    Notes:
+                </aside>
+            </section>
+
+
+            <section>
+                <h2>What is ionic ?</h2>
+                <p>Web technologies you already know and love</p>
+                <div class='row'>
+                    <div class="col-xs-4">
+                        <img class="no-border" src="https://cloud.githubusercontent.com/assets/4806944/4851663/a2753660-6074-11e4-854a-e40cf2c0a612.png" alt="" width=250 height=250>
+                    </div>
+                    <div class="col-xs-4">
+                        <img class="no-border" src="https://cloud.githubusercontent.com/assets/4806944/4851754/4140e06e-6075-11e4-9836-304c18b5c29c.gif" alt="" width=250 height=250>
+                    </div>
+                    <div class="col-xs-4">
+                        <img class="no-border" src="https://cloud.githubusercontent.com/assets/4806944/4851678/bd5cea7c-6074-11e4-9af1-126bd9490d7c.png" alt="" width=250 height=250>
+                    </div>
+                </div>
+
+                <aside class="notes">
+                    Notes:
+                </aside>
+            </section>
+
+            <!--
+            <section data-state="rainman1">
+
+            </section>
+
+
+            <section data-state="rainman2">
+
+            </section>
+            -->
+            <section>
+                <h2>Best friend with angularjs</h2>
+                <p>UI components are angularjs directives</p>
+
+                <img class="no-border" src="https://cloud.githubusercontent.com/assets/4806944/4853216/eb5e7efe-6083-11e4-9f4a-5ef79471fb89.png" alt="" xwidth=250 xheight=250>
+
+
+                <aside class="notes">
+                    Notes:
+                </aside>
+            </section>
+
+            <section>
+                <h2>CSS generated by Sass</h2>
+
+                <img class="no-border" src="https://cloud.githubusercontent.com/assets/4806944/4851911/8aaee8da-6076-11e4-8cff-7a3f7c20f495.png" alt="" width=250 xheight=250>
+                <ul>
+                    <li>Quickly give your app its own look and feel</li>
+                    <li>CSS designed to be overriden</li>
+                    <li>Stand-alone CSS (independent of ionic's javascript)</li>
+                </ul>
+
+                <aside class="notes">
+                    Notes:
+                </aside>
+            </section>
+
+            <section>
+                <h2>Performance obsessed</h2>
+
+                <img class="no-border" src="https://cloud.githubusercontent.com/assets/4806944/4851954/e4c01d26-6076-11e4-8e19-3cf408ecee91.png" alt="" width=250 xheight=250>
+                <br>
+                <ul>
+                    <li>Hardware accelerated animations</li>
+                    <li>Minimal DOM manipulation</li>
+                    <li>Zero jQuery</li>
+                </ul>
+
+                <aside class="notes">
+                    Notes:
+                </aside>
+            </section>
+
+            <section>
+                <h2>Native focused</h2>
+
+                <img class="no-border" src="https://cloud.githubusercontent.com/assets/4806944/4852011/55b97f22-6077-11e4-9e6a-9ab057739f60.png" alt="" width=250 xheight=250>
+                <br>
+                <ul>
+                    <li>Built to work with Cordova / Phonegap</li>
+                    <li>Include its own cli</li>
+                </ul>
+
+                <aside class="notes">
+                    Notes:
+                </aside>
+            </section>
+
+            <section>
+                <h2>Ionic icons</h2>
+
+                <img class="no-border stretch" src="https://cloud.githubusercontent.com/assets/4806944/4852031/7f7b0cfe-6077-11e4-8e11-0217251201d5.png" alt="" xwidth=500 xheight=250>
+
+                <aside class="notes">
+                    Notes:
+                </aside>
+            </section>
+
+            <section>
+                <h2>Lists</h2>
+                <div class='row slide-content'>
+                    <div class="col-xs-3">
+                        <img class="no-border" src="https://cloud.githubusercontent.com/assets/4806944/4852120/3b2a4bb8-6078-11e4-8603-71a5ea5723a4.png" style="position:relative;left:-100px" alt="" width=250 height=500>
+                    </div>
+                    <div class="col-xs-9">
+                        <ul>
+                            <li>css only</li>
+                            <li>no javascript / angularjs</li>
+                        </ul>
+                        <pre><code contenteditable data-trim>
+<div class="list"> 
+   <div class="item item-divider">
+      Candy Bars
+   </div>
+   <a class="item" href="#">
+      Butterfinger
+   </a> 
+   <a class="item" href="#">
+      Kit Kat
+   </a>
+   ...
+</div>
+                        </code></pre>
+                    </div>
+
+                </div>
+
+            </section>
+
+            <section>
+                <h2>Complex Lists</h2>
+                <div class='row slide-content'>
+                    <div class="col-xs-3">
+                        <img class="no-border" src="https://cloud.githubusercontent.com/assets/4806944/4852203/562d7394-6079-11e4-8d83-6fd4a1f08738.png" style="position:relative;left:-100px" alt="" width=250 height=500>
+                    </div>
+                    <div class="col-xs-9">
+                        <ul>
+                            <li>angularjs directive</li>
+                            <li>buttons exposes by swiping</li>
+                            <li>Reorder / Delete</li>
+
+                        </ul>
+                        <pre><code  scontenteditable style="word-wrap:break-word;word-break:break-word;"><ion-list>
+    <ion-item ng-repeat="item in items"
+option-buttons="buttons"
+class="item-thumbnail-left">
+       <img ng-src="{{ item.pic }}">
+       <h2>{{ item.name }}</h2>
+       <p>{{ item.quote }}</p>
+    </ion-item>
+</ion-list></code></pre>
+                    </div>
+
+                </div>
+
+            </section>
+
+            <section>
+                <h2>Tabs</h2>
+                <div class='row slide-content'>
+                    <div class="col-xs-3">
+                        <img class="no-border" src="https://cloud.githubusercontent.com/assets/4806944/4852588/6ed8d5ce-607d-11e4-8732-6b89f462a248.png" style="position:relative;left:-100px" alt="" width=250 height=500>
+                    </div>
+                    <div class="col-xs-9">
+                        <ul>
+                            <li>nested views</li>
+                            <li>each tab has its own nav history</li>
+                        </ul>
+                        <pre><code  scontenteditable style="word-wrap:break-word;word-break:break-word;"><ion-tabs tabs-type="tabs-icon-only">
+   <ion-tab title="Home" icon="ion-star"> 
+      <ion-nav-view name="home"></ion-nav-view>
+   </ion-tab>
+
+   <ion-tab title="Feedback" icon="ion-thumbsdown">
+      <ion-nav-view name="feedback"></ion-nav-view>
+   </ion-tab>
+
+   <ion-tab title="Messages" icon="ion-chat-working">
+      <ion-nav-view name="msg"></ion-nav-view>
+   </ion-tab>
+</ion-tabs>
+</code></pre>
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <section>
+                <h2>Navigation</h2>
+                <div class='row slide-content'>
+                    <div class="col-xs-3">
+                        <img class="no-border" src="https://cloud.githubusercontent.com/assets/4806944/4853245/1493e020-6084-11e4-9d8f-a6dd678a1438.png" style="position:relative;left:-100px" alt="" width=250 height=500>
+                    </div>
+                    <div class="col-xs-9">
+                        <ul>
+                            <li>shows back button when possible</li>
+                            <li>each tab has its own nav history</li>
+                            <li>works with android back button</li>
+                        </ul>
+                        <pre><code  scontenteditable style="word-wrap:break-word;word-break:break-word;"><ion-nav-bar back-button-icon="ion-chevron-left" back-button-type="button-icon">
+</ion-nav-bar>
+
+<ion-nav-view animation="slide-left-right">
+</ion-nav-view>
+
+</code></pre>
+                    </div>
+
+                </div>
+
+            </section>
+
+            <section>
+                <h2>Side Menu</h2>
+                <div class='row slide-content'>
+                    <div class="col-xs-3">
+                        <img class="no-border" src="https://cloud.githubusercontent.com/assets/4806944/4853253/259cf46a-6084-11e4-852d-af28abecf8e0.png" style="position:relative;left:-100px" alt="" width=250 height=500>
+                    </div>
+                    <div class="col-xs-9">
+                        <pre><code  scontenteditable style="word-wrap:break-word;word-break:break-word;"><ion-side-menus>
+   <ion-side-menu-content>
+      <ion-nav-view></ion-nav-view>
+   </ion-side-menu-content> 
+   <ion-side-menu side="left">
+      <header class="bar bar-header bar-positive">
+         <div class="title">Projects</div>
+      </header>
+      <ion-content has-header="true">
+         <div class="list"> 
+            <a href="#/work" class="item">Work</a>
+            <a href="#/home" class="item">Home</a>
+         </div>
+      </ion-content>
+   </ion-side-menu>
+</ion-side-menus>
+
+</code></pre>
+                    </div>
+
+                </div>
+
+            </section>
+
+            <section>
+                <h2>Slide Box</h2>
+                <div class='row slide-content'>
+                    <div class="col-xs-3">
+                        <img class="no-border" src="https://cloud.githubusercontent.com/assets/4806944/4853260/339e6a80-6084-11e4-9e01-c7c440c8fb5d.png" style="position:relative;left:-100px" alt="" width=250 height=500>
+                    </div>
+                    <div class="col-xs-9">
+
+                        <pre><code  scontenteditable style="word-wrap:break-word;word-break:break-word;"><ion-slide-box on-slide-changed="slideHasChanged($index)">
+   <ion-slide> Slide 1 </ion-slide>
+   <ion-slide> Slide 2 </ion-slide>
+   <ion-slide> Slide 3 </ion-slide>
+</ion-slide-box>
+</code></pre>
+                    </div>
+
+                </div>
+
+            </section>
+
+            <section>
+                <h2>Action Sheet</h2>
+                <div class='row slide-content'>
+                    <div class="col-xs-3">
+                        <img class="no-border" src="https://cloud.githubusercontent.com/assets/4806944/4853269/45f98f34-6084-11e4-922e-6b194e62db87.png" style="position:relative;left:-100px" alt="" width=250 height=500>
+                    </div>
+                    <div class="col-xs-9">
+
+                        <pre><code  scontenteditable data-trim style="word-wrap:break-word;word-break:break-word;">
+$ionicActionSheet.show({
+   titleText: 'Modify your album',
+   buttons: [{
+      text: 'Share'
+      }, {
+      text: 'Move'
+   }],
+   destructiveText: 'Delete',
+   cancelText: 'Cancel',
+   buttonClicked: function(index) {
+      console.log('BUTTON CLICKED', index);
+      return true;
+   }
+});
+
+</code></pre>
+                    </div>
+
+                </div>
+
+            </section>
+
+            <section>
+                <h2>Pull to Refresh</h2>
+                <div class='row slide-content'>
+                    <div class="col-xs-3">
+                        <img class="no-border" src="https://cloud.githubusercontent.com/assets/4806944/4853281/622e6b52-6084-11e4-977d-0cb7186c9c2f.gif" style="position:relative;left:-100px" alt="" width=250 height=500>
+                    </div>
+                    <div class="col-xs-9">
+
+                        <pre><code  scontenteditable data-trim style="word-wrap:break-word;word-break:break-word;">
+<ion-content> 
+   <ion-refresher on-refresh="refreshData()">
+   </ion-refresher>
+   <!-- content -->
+</ion-content>
+</code></pre>
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <section>
+                <h2>How do I get started ?</h2>
+                <div class='row slide-content'>
+                    <div class="col-xs-12" style="font-sizes: 30px;">
+                        <ul>
+                            <li class="fragment">
+                                Use ionic cli
+                                <pre><code data-trim contenteditable>
+npm install -g ionic
+ionic start myapp [template]
+ionic serve
+ionic platform ios android
+ionic build ios
+</code></pre>
+                            </li>
+                            <li class="fragment">
+                                or install with Bower
+                                <pre><code data-trim contenteditable>
+bower install ionic
+
+</code></pre>
+                            </li>
+
+                            <li class="fragment">
+                                or use ionic creator (https://creator.ionic.io/)
+                            </li>
+
+                            <li class="fragment" style="color:#17ff2e">
+                                or use a yeoman generator (https://www.npmjs.org/package/generator-angular-famous-ionic)
+                                <pre><code data-trim contenteditable>
+yo angular-famous-ionic
+                                </code></pre>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+
+            <section data-state="boring">
+                <p style="margin-top:700px;color:white;text-shadow:2px 2px 2px #000000;font-weight:bolder">This is boooring... Show me the code</p>
+            </section>
+
+            <section>
+                <h2>Live coding</h2>
+                <p>Let's play with the baby and see how easy it is to build a mobile app</p>
+                <img src="http://i.giphy.com/hV2T82ysDmIDu.gif" class="stretch" alt="">
+            </section>
+
+            <section>
+
+                <h2>Let's build a facebook mobile app</h2>
+                <img src="https://cloud.githubusercontent.com/assets/4806944/4893703/f09b7d00-63c5-11e4-8d12-b7f7306a9ea0.png" class="stretch" alt="">
+            </section>
+
+            <section>
+                <h2>That's it !!!</h2>
+                <div class='row slide-content'>
+                    <div class="col-xs-12">
+                        <img class="no-border" style="margin-top:100px" src="https://cloud.githubusercontent.com/assets/4806944/4648942/50c27250-5486-11e4-9755-14dc2287dfce.png" alt="">
+
+                    </div>
+                    <!-- <div class="col-xs-6">
+                        <p>and one more thing...</p>
+                        <img class="fragment" style="border-radius:10px" src="http://www.edenvirginhair.com/wp-content/uploads/2014/08/we-are-recruiting.png" alt="">
+
+                    </div> -->
+
+                </div>
+            </section>
+
+        </div>
+
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.min.js"></script>
+
+    <script>
+        // Full list of configuration options available here:
+         // https://github.com/hakimel/reveal.js#configuration
+        Reveal.initialize({
+            controls: true,
+            progress: true,
+            history: true,
+            center: true,
+            slideNumber: false,
+            theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+            transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+            // Parallax scrolling
+            // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+            // parallaxBackgroundSize: '2100px 900px',
+
+            // Optional libraries used to extend on reveal.js
+            dependencies: [{
+                src: 'lib/js/classList.js',
+                condition: function() {
+                    return !document.body.classList;
+                }
+            }, {
+                src: 'plugin/markdown/marked.js',
+                condition: function() {
+                    return !!document.querySelector('[data-markdown]');
+                }
+            }, {
+                src: 'plugin/markdown/markdown.js',
+                condition: function() {
+                    return !!document.querySelector('[data-markdown]');
+                }
+            }, {
+                src: 'plugin/highlight/highlight.js',
+                async: true,
+                callback: function() {
+                    hljs.initHighlightingOnLoad();
+                }
+            }, {
+                src: 'plugin/zoom-js/zoom.js',
+                async: true,
+                condition: function() {
+                    return !!document.body.classList;
+                }
+            }, {
+                src: 'plugin/notes/notes.js',
+                async: true,
+                condition: function() {
+                    return !!document.body.classList;
+                }
+            }]
+        });
+    </script>
+
+</body>
+
+</html>
