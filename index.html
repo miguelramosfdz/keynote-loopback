@@ -4,9 +4,9 @@
 <head>
     <meta charset="utf-8">
 
-    <title>Angular + Loopback</title>
+    <title>Loopback Isomorphic Angular</title>
 
-    <meta name="description" content="Looopback.io is a free, open source framework that helps you create smooth, complex rest api backend">
+    <meta name="description" content="Looopback.io is a free, extensible open source Node.js framework that helps you create smooth, complex rest api backend">
     <meta name="author" content="Avi Haiat">
 
     <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -47,8 +47,8 @@
             <a href="http://yoobic.com" style="position:relative; top:35px; left:28px">
                 <img class="ts no-border" src="img/yoobic.svg" /><small style="position:relative;top:-35px; left:-18px;color:white;letter-spacing:0.4em">YOOBIC</small><small style="font-size:0.3em;position:relative;top:-10px; left:-150px;color:white">Collective intelligence</small>
             </a>
-            <a href="http://ionicframework.com/" style="position:relative; left:-100px">
-                <img id="ionic-logo" class="ionic no-border" src="img/logo-ionic-white.png" />
+            <a href="http://loopback.io/" style="position:relative; left:-100px;">
+                <img id="strongloop-logo" class="strongloop no-border" src="img/strongloop.png" />
             </a>
             <a href="http://angularjs.org" style="position:relative; left:-100px">
                 <img class="angularjs no-border" src="img/angularjs.svg" />
@@ -58,10 +58,10 @@
         <!-- Any section element inside of this container is displayed as a slide -->
         <div class="slides">
             <section>
-                <h2>ionic framework</h2>
-                <p>The beautiful open source framework for developing hybrid mobile apps with HTML5</p>
-                <a href="http://disrupt.famo.us/periodic402/">
-                    <img src="img/logo-ionic-white.png" class="no-border" style="width: 250px; margin-top: 45px;" />
+                <h2>Loopback.io</h2>
+                <p>The beautiful open source Node.js framework for developing angular isomorphic backend</p>
+                <a href="http://loopback.io/">
+                    <img src="img/loopback_landscape.png" class="no-border" sstyle="width: 250px; margin-top: 45px;" />
                 </a>
                 <p style="margin-top:100px">
                     <small>Presented by <br><a href="http://thaiat.github.io">Avi&nbsp;&nbsp;Haiat</a> - <a href="mailto:thaiat@yoobic.com">thaiat@yoobic.com</a></small>
@@ -142,21 +142,103 @@
                 <img src="http://www.edenvirginhair.com/wp-content/uploads/2014/08/we-are-recruiting.png" alt="" class="stretch fragment roll-in">
             </section> -->
             <section>
-                <h2>More platforms, more problems</h2>
-                <div class='row slide-content'>
-                    <div class="col-xs-4">
-                        <img class="no-border" src="https://cloud.githubusercontent.com/assets/4806944/4646687/8fb4cece-5475-11e4-9bbd-0ccedf573dee.png" alt="">
-                    </div>
-                    <div class="col-xs-4">
-                        <img class="no-border" src="https://cloud.githubusercontent.com/assets/4806944/4646690/9194efd0-5475-11e4-8b5d-2af193854818.png" alt="">
-                    </div>
-                    <div class="col-xs-4">
-                        <img class="no-border" src="https://cloud.githubusercontent.com/assets/4806944/4646693/93688178-5475-11e4-97a0-c4adfed7b30a.png" alt="">
-                    </div>
-                </div>
-                <p>Do we really need to code for multiple platforms ?</p>
+            <h2>About <span class="green">StrongLoop</span></h2>
+                    
+                <ul>
+                    <li class="fragment">Founded <span class="green">2012</span></li>
+                    <li class="fragment">Co-founders are main core contributors to Node.js</span></li>
+                    <li class="fragment">Develop and support...
+                        <ul>
+                            <li><span class="green">Loopback</span>: Open Source Mobile Backend-as-a-Service</li>
+                            <li><span class="green">StrongOps</span>: Realtime performance monitoring</li>
+                            <li><span class="green">StrongNode</span>: Support for StrongLoop and public Node.js modules</li>
+                            
+                        </ul>
+                    </li>
+                    <li class="fragment">Also maintains / contribute to the npm ecosystem
+                        <ul>
+                            <li>node-inspector, node-reggie, express, etc...</li>
+                        </ul>
+                    </li>
+                </ul>   
             </section>
 
+            <section>
+                <h2>The problem: Your apps need data</h2>
+                <div class='row slide-content fragment'>
+                    <div class="col-xs-4">
+                        <img class="no-border" style="height:250px" src="http://res.cloudinary.com/yoobic/image/upload/e_negate/v1431166155/devices_c7dl0s.png" alt="">
+                    </div>
+                    <div class="col-xs-4">
+                        <img class="no-border" style="height:200px" src="img/firewall.png" alt="">
+                    </div>
+                    <div class="col-xs-4">
+                        <img class="no-border" style="height:180px;margin-top:50px" src="img/database.png" alt="">
+                    </div>
+                </div>
+                <div class='row slide-content'>
+                    <ul>
+                        <li class="fragment">Not authorized (AAA)</li>
+                        <li class="fragment">Combine multiple DBs</li>
+                        <li class="fragment">Too much data</li>
+                        <li class="fragment">Pre / post processing</li>
+                        
+                    </ul>
+                </div>
+            </section>
+
+
+            <section>
+                <h2>The solutions (1/2): MBAAS</h2>
+     
+                <div class='row slide-content'>
+                    <ul>
+                        <li class="fragment"><img src="img/parse.png" class="img-li" /> Parse</li>
+                        <p  class="fragment subli">It was incubated as a Y Combinator startup, where it initially raised $1.5 million. In November 2011, it closed a Series-A funding round of $5.5 million. Initially, Parse called itself “Heroku for mobile” aiming to becoming the defacto MBaaS platform.
+                        In 2013, Facebook acquired Parse for a whopping $85 million.
+                        </p>
+                        <li class="fragment"><img src="img/kinvey.png" class="img-li" /> Kinvey </li>
+                        <p  class="fragment subli">Recently raised a Series A funding of $5 million.
+                        Kinvey aims at the enterprise market by clearly differentiating its offerings. It has strong partnerships with Google and Red Hat to bring full-blown platform support for hosting custom code and business logic</p>
+                        <li class="fragment"><img src="img/anypresence.png" class="img-li" /> AnyPresence </li>
+                        <p  class="fragment subli">It is one of the few players to offer an integrated mobile platform, starting with the UI design to the business logic to the backend API. It has raised $7.5 million across two rounds of venture financing from Grotech Ventures and Kinetic Ventures</p>        
+                    </ul>
+                </div>
+            </section>
+
+
+            <section>
+                <h2>The solutions (2/2): Host yourself</h2>
+     
+                <div class='row slide-content'>
+                    <ul>
+                        <li class="fragment"><img src="img/express.png" class="img-li" /> Express</li>
+                        <li class="fragment"><img src="img/sails.png" class="img-li" /> Sails</li>
+                        <li class="fragment"><img src="img/hapi.png" class="img-li" /> Hapi</li>
+                        <li class="fragment"><img src="img/loopback.png" class="img-li no-border" /> Loopback.io</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section>
+                <h2>What is Loopback.io ?</h2>
+                <div class='row slide-content fragment'>
+                    <div class="col-xs-4">
+                        <img class="no-border" style="height:250px" src="img/loopback.png" alt="">
+                    </div>
+                    <div class="col-xs-8">
+                        <ul>
+                            <li class="fragment">Built on top of Express</li>
+                            <li class="fragment">Optimized for APIs</li>
+                            <li class="fragment">Model Driven Architecture</li>
+                            <li class="fragment">Full Stack</li>
+                            <li class="fragment">GUI and performance tools</li>
+                        </ul>    
+                    </div>
+                    
+                </div>
+                
+            </section>
 
             <section data-state="facebook">
                 <div class='row slide-content'>
