@@ -120,9 +120,9 @@ gulp karma
         <label class="item-input-wrapper">
             <input type="text" name="pictureTitle" placeholder="Your picture title" ng-model="vm.pictureTitle" required>
         </label>
-        <button class="button button-small button-positive button-outline" ng-click="vm.takePicture($event)">
+        <div class="button button-small button-positive button-outline" image-capture handler="vm.test" ng-click="vm.mycapture()">
             <i class="icon ion-camera"></i>
-        </button>
+        </div>
     </ion-header-bar>
 
     <ion-content class="has-subheader">
@@ -132,13 +132,13 @@ gulp karma
             <div class="list card">
 
                 <div class="item item-avatar">
-                    <img src="mcfly.jpg">
-                    <h2>Marty McFly</h2>
+                    <img ng-src="{{image.src}}">
+                    <h2>{{image.title}}</h2>
                     <p>November 05, 1955</p>
                 </div>
 
                 <div class="item item-body">
-                    <img class="full-image" src="delorean.jpg">
+                    <img class="full-image" ng-src="{{image.src}}">
                     <p>
                     </p>
                     <p>
@@ -152,7 +152,6 @@ gulp karma
 
     </ion-content>
 </ion-view>
-
 ```
 
 ### Copy lbServices.js
@@ -195,7 +194,57 @@ gulp cordova:all  MODIFY GENERATOR generator-sublime
 
 ### Modify home.js
 ```js
-title
+'use strict';
+var controllername = 'home';
+
+module.exports = function(app) {
+    /*jshint validthis: true */
+
+    var angular = require('angular');
+
+    var deps = [app.name + '.loopbackConstant', 'Image', 'ImageContainer', app.namespace.yoobicUI + '.fileUploadLoopback'];
+
+    function controller(loopbackConstant, Image, ImageContainer, fileUploadLoopback) {
+        var vm = this;
+        vm.title = 'Share some moments';
+        var activate = function() {
+            Image.find().$promise.then(function(images) {
+                images.forEach(function(image) {
+                    image.src = loopbackConstant.baseUrl + '/' + 'ImageContainers' + '/' + 'instagram' + '/download/' + image.filename;
+                });
+                vm.images = images;
+                console.log(images);
+            });
+        };
+        activate();
+
+        vm.mycapture = function() {
+            vm.test()
+                .then(function(res) {
+                    var filedata = res.filedata;
+                    var filename = res.filename;
+                    return fileUploadLoopback.upload(loopbackConstant.baseUrl, 'ImageContainers', loopbackConstant.container, filename, filedata);
+
+                }, function(err) {
+                    alert('err:' + err);
+                })
+                .then(function(uploadedFile) {
+                    return Image.create({
+                        filename: uploadedFile.name,
+                        title: vm.pictureTitle
+                    }).$promise;
+                })
+                .then(function() {
+                    activate();
+                });
+        };
+
+    }
+
+    controller.$inject = deps;
+    app.controller(app.name + '.' + controllername, controller);
+};
+
 
 ```
 
