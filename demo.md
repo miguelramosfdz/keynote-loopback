@@ -31,10 +31,35 @@ mkdir storage
 mkdir storage/instagram
 ```
 
+Change the datasource to mongo
+
 
 Show Arc
 ```
 slc arc
+```
+
+Add operation hook to Image
+```js
+'use strict';
+
+module.exports = function(Image) {
+
+    Image.observe('before save', function(ctx, next) {
+        var data;
+        if(ctx.instance) {
+            data = ctx.instance;
+        } else {
+            data = ctx.data;
+        }
+        var currDate = new Date();
+        if(ctx.isNewInstance) {
+            data.created_at = currDate;
+        }
+        data.updated_at = currDate;
+        next();
+    });
+};
 ```
 
 Generate client side
@@ -42,6 +67,17 @@ Generate client side
 lb-ng server/server.js ./client/lbServices.js
 ```
 
+Create a mongolab database
+test/test
+
+Publish to heroku
+```bash
+heroku create
+heroku config:set MONGOHQ_URL=mongodb://test:test@ds041168.mongolab.com:41168/makemeup
+heroku config:set NODE_ENV=heroku
+git push heroku
+
+```
 
 #Client
 
@@ -53,6 +89,7 @@ yo angular-famous-ionic:contant loopbackConstant
 
 
 bower install --save angular-resource
+npm install --save yoobic-angular-core
 ```
 
 Update bower.json > GENERATOR
@@ -113,20 +150,22 @@ gulp karma
 <ion-view>
 
     <ion-header-bar class="bar-positive" align-title="center">
-        <h1 class="title">{{vm.title}}</h1>
+        <h1 class="title">{{vm.title}} <span class="badge badge-assertive">{{vm.count}}</span></h1>
     </ion-header-bar>
 
     <ion-header-bar class="bar-subheader bar-stable item-input-inset" align-title="center">
-        <label class="item-input-wrapper">
-            <input type="text" name="pictureTitle" placeholder="Your picture title" ng-model="vm.pictureTitle" required>
-        </label>
-        <div class="button button-small button-positive button-outline" image-capture handler="vm.test" ng-click="vm.mycapture()">
+        <form style="width:90%">
+            <label class="item-input-wrapper">
+                <input type="text" name="pictureTitle" placeholder="Your picture title" ng-model="vm.pictureTitle" required>
+            </label>
+        </form>
+        <div class="button button-small button-positive button-outline" yoo-image-capture handler="vm.captureHandler" ng-click="vm.doCapture()">
             <i class="icon ion-camera"></i>
         </div>
     </ion-header-bar>
 
     <ion-content class="has-subheader">
-
+        <yoo-refresher on-refresh="vm.loadImages()"></yoo-refresher>
         <div ng-repeat="image in vm.images">
 
             <div class="list card">
@@ -153,6 +192,14 @@ gulp karma
     </ion-content>
 </ion-view>
 ```
+
+main.scss
+```css
+form.ng-invalid > .item-input-wrapper {
+    border: 2px red dashed;
+}
+```
+
 
 ### Copy lbServices.js
 ```
@@ -202,28 +249,36 @@ module.exports = function(app) {
 
     var angular = require('angular');
 
-    var deps = [app.name + '.loopbackConstant', 'Image', 'ImageContainer', app.namespace.yoobicUI + '.fileUploadLoopback'];
+    var deps = [app.name + '.loopbackConstant', 'Image', 'ImageContainer', app.namespace.yoobicUI + '.fileStorageLoopback'];
 
-    function controller(loopbackConstant, Image, ImageContainer, fileUploadLoopback) {
+    function controller(loopbackConstant, Image, ImageContainer, fileStorageLoopback) {
         var vm = this;
         vm.title = 'Share some moments';
-        var activate = function() {
-            Image.find().$promise.then(function(images) {
-                images.forEach(function(image) {
-                    image.src = loopbackConstant.baseUrl + '/' + 'ImageContainers' + '/' + 'instagram' + '/download/' + image.filename;
-                });
-                vm.images = images;
-                console.log(images);
-            });
-        };
-        activate();
 
-        vm.mycapture = function() {
-            vm.test()
+        var activate = function() {
+            vm.loadImages();
+        };
+
+        vm.loadImages = function() {
+            return Image.find()
+                .$promise
+                .then(function(images) {
+                    images.forEach(function(image) {
+                        image.src = fileStorageLoopback.download(loopbackConstant.baseUrl, 'ImageContainers', loopbackConstant.container, image.filename);
+                    });
+                    return images;
+                })
+                .then(function(images) {
+                    vm.images = images;
+                    vm.count = images.length;
+                });
+        };
+        vm.doCapture = function() {
+            vm.captureHandler()
                 .then(function(res) {
                     var filedata = res.filedata;
                     var filename = res.filename;
-                    return fileUploadLoopback.upload(loopbackConstant.baseUrl, 'ImageContainers', loopbackConstant.container, filename, filedata);
+                    return fileStorageLoopback.upload(loopbackConstant.baseUrl, 'ImageContainers', loopbackConstant.container, filename, filedata);
 
                 }, function(err) {
                     alert('err:' + err);
@@ -235,15 +290,18 @@ module.exports = function(app) {
                     }).$promise;
                 })
                 .then(function() {
-                    activate();
+                    vm.loadImages();
                 });
         };
+
+        activate();
 
     }
 
     controller.$inject = deps;
     app.controller(app.name + '.' + controllername, controller);
 };
+
 
 
 ```
