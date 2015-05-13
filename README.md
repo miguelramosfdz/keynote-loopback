@@ -1,15 +1,11 @@
-Ionic Framework
+Loopback.io
 =============
 
-[Start the presentation](http://thaiat.github.io/keynote-ionic)
+[Start the presentation](http://thaiat.github.io/keynote-loopback)
 
 Additional links.
 
- - [Learn Ionic](http://learn.ionicframework.com/)
- - [Forum](http://forum.ionicframework.com/)
- - [Demos](http://codepen.io/ionic/public-list/)
- - [Blog](http://ionicframework.com/blog/)
- - [Newsletter](http://ionicframework.com/subscribe/)
- - [@Ionicframework](https://twitter.com/ionicframework)
- - [Present Ionic Homepage](http://ionicframework.com/present-ionic/)
- - [Documentation](http://ionicframework.com/docs/)
+ - [Try Loopback](http://strongloop.com/get-started)
+ - [Documentation](http://docs.strongloop.com)
+ - [Forum](http://groups.google.com/forum/#!forum/strongloop)
+ - [Blog](https://strongloop.com/strongblog/)
