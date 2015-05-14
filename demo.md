@@ -3,18 +3,15 @@
 # Server
 ## Create the project
 ```bash
+ulimit -n 2048
 npm install -g strongloop
 slc loopback instagram-loopback
 cd instagram-loopback
+
+git init
+
 slc loopback:datasource mongo
 slc loopback:datasource filestorage
-
-npm install --save loopback-connector-mongodb
-npm install --save loopback-component-storage
-
-slc loopback:model Image title, geolocation, filename, date
-slc loopback:model ImageContainer based on Model
-```
 
 Change filestorage to
 ```json
@@ -28,8 +25,18 @@ Change filestorage to
 and create directory storage
 ```bash
 mkdir storage
-mkdir storage/instagram
+mkdir storage/ngconf
+touch storage/ngconf/README.md
 ```
+
+npm install --save loopback-connector-mongodb
+npm install --save loopback-component-storage
+
+slc loopback:model Image title, geolocation, filename, created_at, updated_at  -> MAKE SURE DATABASE is mongo
+slc loopback:model ImageContainer based on Model -> MAKE SURE DATABASE is filestorage
+```
+
+
 
 Change the datasource to mongo
 
@@ -62,22 +69,44 @@ module.exports = function(Image) {
 };
 ```
 
+Create the configuration for heroku with mongo
+Add a new file datasources.heroku.js
+```js
+'use strict';
+
+module.exports = {
+    mongo: {
+        connector: 'mongodb',
+        url: process.env.MONGOHQ_URL
+    }
+};
+```
+
+Create a mongolab database thaiat/***
+test/test
+
+Add Procfile
+```
+web: node server/server.js
+```
+
+Publish to heroku
+```bash
+git cm "feat(app): Initial repo"
+heroku create ngconf -> START WITH 1 DYNO
+heroku config:set MONGOHQ_URL=mongodb://test:test@ds041168.mongolab.com:41168/makemeup
+heroku config:set NODE_ENV=heroku
+git push heroku
+```
+
+navigate to the heroku app `heroku open`
+
 Generate client side
 ```
 lb-ng server/server.js ./client/lbServices.js
 ```
 
-Create a mongolab database
-test/test
 
-Publish to heroku
-```bash
-heroku create
-heroku config:set MONGOHQ_URL=mongodb://test:test@ds041168.mongolab.com:41168/makemeup
-heroku config:set NODE_ENV=heroku
-git push heroku
-
-```
 
 #Client
 
@@ -85,56 +114,11 @@ git push heroku
 ```bash
 yo angular-famous-ionic --mobile
 yo angular-famous-ionic:module common
-yo angular-famous-ionic:contant loopbackConstant
-
-
-bower install --save angular-resource
+yo angular-famous-ionic:constant common loopbackConstant
+yo angular-famous-ionic:controller common home
 npm install --save yoobic-angular-core
+npm install --save angular-moment
 ```
-
-Update bower.json > GENERATOR
-```json
-"dependencies": {
-    "angular": "1.3.15",
-    "angular-mocks": "1.3.15",
-    "angular-animate": "1.3.15",
-    "angular-sanitize": "1.3.15",
-    "angular-ui-router": "0.2.13",
-    "collide": "1.0.0-beta.3",
-    "ionic": "1.0.0-rc.5",
-    "ngCordova": "0.1.15-alpha",
-    "font-awesome": "4.2.0",
-    "angular-resource": "1.3.15"
-  },
-  "resolutions": {
-    "angular": "1.3.15",
-    "angular-animate": "1.3.15",
-    "angular-sanitize": "1.3.15"
-  }
-```
-
-Add angular-resource and lbServices to `package.json`  GENERATOR
-
-```json
-"lbServices": "./client/scripts/lbServices.js"
-"angular-resource": "./bower_components/angular-resource/angular-resource.js",
-   
-...
-
-"angular-resource": {
-      "exports": "angular",
-      "depends": [
-        "angular"
-      ]
-    },
-    "lbServices": {
-      "depends": [
-        "angular-resource"
-      ]
-    },
-
-```
-
 
 
 ### Show the project
@@ -150,7 +134,9 @@ gulp karma
 <ion-view>
 
     <ion-header-bar class="bar-positive" align-title="center">
-        <h1 class="title">{{vm.title}} <span class="badge badge-assertive">{{vm.count}}</span></h1>
+        <h1 class="title">{{vm.title}}
+            <span class="badge badge-assertive">{{vm.count}}</span>
+        </h1>
     </ion-header-bar>
 
     <ion-header-bar class="bar-subheader bar-stable item-input-inset" align-title="center">
@@ -159,7 +145,7 @@ gulp karma
                 <input type="text" name="pictureTitle" placeholder="Your picture title" ng-model="vm.pictureTitle" required>
             </label>
         </form>
-        <div class="button button-small button-positive button-outline" yoo-image-capture handler="vm.captureHandler" ng-click="vm.doCapture()">
+        <div style="margin-left:10px" ng-disabled="!vm.pictureTitle" class="button button-small button-positive button-outline" yoo-image-capture handler="vm.captureHandler" ng-click="vm.doCapture()">
             <i class="icon ion-camera"></i>
         </div>
     </ion-header-bar>
@@ -173,7 +159,7 @@ gulp karma
                 <div class="item item-avatar">
                     <img ng-src="{{image.src}}">
                     <h2>{{image.title}}</h2>
-                    <p>November 05, 1955</p>
+                    <p><span am-time-ago="image.created_at"></span></p>
                 </div>
 
                 <div class="item item-body">
@@ -226,8 +212,20 @@ module.exports = function(app) {
 ```
 
 
-### Add home controller and modify config
+### Change index.js
 ```js
+
+require('lbServices');
+require('angular-moment');
+var yoobicUI = require('yoobic-angular-core').ui;
+
+['lbServices', yoobicUI.name, 'angularMoment']
+
+app.namespace = app.namespace  || {};
+app.namespace.yoobicUI = yoobicUI.name;
+
+controller : fullname + '.home as vm'
+
 app.config(['LoopBackResourceProvider', fullname + '.loopbackConstant', function(LoopBackResourceProvider, loopbackConstant) {
         // Change the URL where to access the LoopBack REST API server
         LoopBackResourceProvider.setUrlBase(loopbackConstant.baseUrl);
@@ -236,7 +234,7 @@ app.config(['LoopBackResourceProvider', fullname + '.loopbackConstant', function
 
 ### Build ios and android
 ```bash
-gulp cordova:all  MODIFY GENERATOR generator-sublime
+gulp cordova:all 
 ```
 
 ### Modify home.js
@@ -260,7 +258,11 @@ module.exports = function(app) {
         };
 
         vm.loadImages = function() {
-            return Image.find()
+            return Image.find({
+                    filter: {
+                        order: 'created_at DESC'
+                    }
+                })
                 .$promise
                 .then(function(images) {
                     images.forEach(function(image) {
@@ -302,7 +304,38 @@ module.exports = function(app) {
     app.controller(app.name + '.' + controllername, controller);
 };
 
+```
 
+## TestFairy
+add api upload key : 7422cf17c862ecca807a817e2c1f2c06567cf62a to constants
+Add plugins in hook
+```
+'org.apache.cordova.device',
+'org.apache.cordova.device-motion',
+'org.apache.cordova.device-orientation',
+'org.apache.cordova.geolocation',
+'org.apache.cordova.console',
+'org.apache.cordova.file-transfer',
+'org.apache.cordova.camera',
+'org.apache.cordova.media-capture',
+'org.apache.cordova.geolocation',
+'org.apache.cordova.splashscreen',
+'org.apache.cordova.statusbar',
+'org.apache.cordova.globalization',
+'com.ionic.keyboard',
+'https://github.com/testfairy/testfairy-cordova-plugin'
 
 ```
+
+Add testfairy initialization in main.js
+```js
+if($window.TestFairy) {
+    $window.TestFairy.begin('9d85ea005720f0b65a824114d53b0bce5a958581');
+}
+``
+
+gulp cordova:all
+
+gulp cordova:testfairy
+
 
