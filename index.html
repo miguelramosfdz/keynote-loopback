@@ -330,14 +330,19 @@
                             <div class="fragment">
                                 Use loopback cli
                                 <pre><code data-trim contenteditable>
+# Install loopback cli
 npm install -g strongloop
 
+# Scaffold a new loopack project
 slc loopback my-project
-
 cd my-project
 
+# Add models and datasources
 slc loopback:model
 slc loopback:datasource
+
+# Generate angular SDK
+lb-ng server/server client/lbServices.js
 </code></pre>
                             </div>
                            

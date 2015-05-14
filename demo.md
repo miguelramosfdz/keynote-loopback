@@ -94,7 +94,7 @@ Publish to heroku
 ```bash
 git cm "feat(app): Initial repo"
 heroku create ngconf -> START WITH 1 DYNO
-heroku config:set MONGOHQ_URL=mongodb://test:test@ds041168.mongolab.com:41168/makemeup
+heroku config:set MONGOHQ_URL=mongodb://test:test@ds031792.mongolab.com:31792/ngconf
 heroku config:set NODE_ENV=heroku
 git push heroku
 ```
