@@ -12,6 +12,7 @@ git init
 
 slc loopback:datasource mongo
 slc loopback:datasource filestorage
+```
 
 Change filestorage to
 ```json
@@ -27,7 +28,6 @@ and create directory storage
 mkdir storage
 mkdir storage/ngconf
 touch storage/ngconf/README.md
-```
 
 npm install --save loopback-connector-mongodb
 npm install --save loopback-component-storage
@@ -128,6 +128,20 @@ gulp lint
 gulp karma
 ````
 
+### Change loopbackConstants.js
+```js
+'use strict';
+var constantname = 'loopbackConstant';
+
+module.exports = function(app) {
+    app.constant(app.name + '.' + constantname, {
+
+        baseUrl : 'http://localhost:3000/api',
+        container : 'ngconf'
+    });
+};
+```
+
 
 ### Change home.html
 ```html
@@ -197,19 +211,7 @@ Launch
 gulp browsersync
 ```
 
-### Change loopbackConstants.js
-```js
-'use strict';
-var constantname = 'loopbackConstant';
 
-module.exports = function(app) {
-    app.constant(app.name + '.' + constantname, {
-
-        baseUrl : 'http://localhost:3000/api',
-        container : 'instagram'
-    });
-};
-```
 
 
 ### Change index.js
@@ -332,7 +334,7 @@ Add testfairy initialization in main.js
 if($window.TestFairy) {
     $window.TestFairy.begin('9d85ea005720f0b65a824114d53b0bce5a958581');
 }
-```
+``
 
 gulp cordova:all
 
