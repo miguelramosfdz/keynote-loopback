@@ -332,7 +332,7 @@ Add testfairy initialization in main.js
 if($window.TestFairy) {
     $window.TestFairy.begin('9d85ea005720f0b65a824114d53b0bce5a958581');
 }
-``
+```
 
 gulp cordova:all
 
