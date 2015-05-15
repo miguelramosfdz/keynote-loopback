@@ -162,8 +162,6 @@ var yoobicUI = require('yoobic-angular-core').ui;
 
 ['lbServices', yoobicUI.name, 'angularMoment']
 
-app.namespace = app.namespace  || {};
-app.namespace.yoobicUI = yoobicUI.name;
 
 controller : fullname + '.home as vm'
 
@@ -243,7 +241,7 @@ var controllername = 'home';
 module.exports = function(app) {
     /*jshint validthis: true */
 
-    var deps = [app.name + '.loopbackConstant', 'Image', 'ImageContainer', app.namespace.yoobicUI + '.fileStorageLoopback'];
+    var deps = [app.name + '.loopbackConstant', 'Image', 'ImageContainer', 'yoobic.angular.ui.fileStorageLoopback'];
 
     function controller(loopbackConstant, Image, ImageContainer, fileStorageLoopback) {
         var vm = this;
