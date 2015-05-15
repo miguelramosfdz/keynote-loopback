@@ -69,8 +69,8 @@ module.exports = function(Image) {
 };
 ```
 
-Create the configuration for heroku with mongo
-Add a new file datasources.heroku.js
+Create the configuration for heroku with mongo   
+Add a new file `datasources.heroku.js
 ```js
 'use strict';
 
@@ -93,6 +93,7 @@ web: node server/server.js
 Publish to heroku
 ```bash
 git cm "feat(app): Initial repo"
+git remote add heroku https://git.heroku.com/ngconf.git
 heroku create ngconf -> START WITH 1 DYNO
 heroku config:set MONGOHQ_URL=mongodb://test:test@ds031792.mongolab.com:31792/ngconf
 heroku config:set NODE_ENV=heroku
@@ -120,6 +121,10 @@ npm install --save yoobic-angular-core
 npm install --save angular-moment
 ```
 
+### Copy lbServices.js
+```
+cp ../ngconf-loopback/client/lbServices.js client/scripts
+```
 
 ### Show the project
 ```
@@ -127,6 +132,12 @@ gulp help
 gulp lint
 gulp karma
 ````
+
+
+Launch
+```
+gulp browsersync
+```
 
 ### Change loopbackConstants.js
 ```js
@@ -136,10 +147,30 @@ var constantname = 'loopbackConstant';
 module.exports = function(app) {
     app.constant(app.name + '.' + constantname, {
 
-        baseUrl : 'http://localhost:3000/api',
+        baseUrl : 'https://ngconf.herokuapp.com/api',
         container : 'ngconf'
     });
 };
+```
+
+### Change index.js
+```js
+
+require('lbServices');
+require('angular-moment');
+var yoobicUI = require('yoobic-angular-core').ui;
+
+['lbServices', yoobicUI.name, 'angularMoment']
+
+app.namespace = app.namespace  || {};
+app.namespace.yoobicUI = yoobicUI.name;
+
+controller : fullname + '.home as vm'
+
+app.config(['LoopBackResourceProvider', fullname + '.loopbackConstant', function(LoopBackResourceProvider, loopbackConstant) {
+        // Change the URL where to access the LoopBack REST API server
+        LoopBackResourceProvider.setUrlBase(loopbackConstant.baseUrl);
+    }]);
 ```
 
 
@@ -201,43 +232,8 @@ form.ng-invalid > .item-input-wrapper {
 ```
 
 
-### Copy lbServices.js
-```
-cp client/lbServices.js ../instagram-app/client/scripts/
-
-```
-Launch
-```
-gulp browsersync
-```
 
 
-
-
-### Change index.js
-```js
-
-require('lbServices');
-require('angular-moment');
-var yoobicUI = require('yoobic-angular-core').ui;
-
-['lbServices', yoobicUI.name, 'angularMoment']
-
-app.namespace = app.namespace  || {};
-app.namespace.yoobicUI = yoobicUI.name;
-
-controller : fullname + '.home as vm'
-
-app.config(['LoopBackResourceProvider', fullname + '.loopbackConstant', function(LoopBackResourceProvider, loopbackConstant) {
-        // Change the URL where to access the LoopBack REST API server
-        LoopBackResourceProvider.setUrlBase(loopbackConstant.baseUrl);
-    }]);
-```
-
-### Build ios and android
-```bash
-gulp cordova:all 
-```
 
 ### Modify home.js
 ```js
@@ -308,8 +304,15 @@ module.exports = function(app) {
 
 ```
 
+
+### Build ios and android
+```bash
+gulp cordova:all 
+```
+
+
 ## TestFairy
-add api upload key : 7422cf17c862ecca807a817e2c1f2c06567cf62a to constants
+add api upload key : 7422cf17c862ecca807a817e2c1f2c06567cf62a to gulp_tasks/common/constants.js`
 Add plugins in hook
 ```
 'org.apache.cordova.device',
