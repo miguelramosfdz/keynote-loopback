@@ -243,8 +243,6 @@ var controllername = 'home';
 module.exports = function(app) {
     /*jshint validthis: true */
 
-    var angular = require('angular');
-
     var deps = [app.name + '.loopbackConstant', 'Image', 'ImageContainer', app.namespace.yoobicUI + '.fileStorageLoopback'];
 
     function controller(loopbackConstant, Image, ImageContainer, fileStorageLoopback) {
@@ -280,8 +278,6 @@ module.exports = function(app) {
                     var filename = res.filename;
                     return fileStorageLoopback.upload(loopbackConstant.baseUrl, 'ImageContainers', loopbackConstant.container, filename, filedata);
 
-                }, function(err) {
-                    alert('err:' + err);
                 })
                 .then(function(uploadedFile) {
                     return Image.create({
