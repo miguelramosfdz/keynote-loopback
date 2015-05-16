@@ -12,6 +12,8 @@ git init
 
 slc loopback:datasource mongo
 slc loopback:datasource filestorage
+
+npm install --save loopback-connector-mongodb loopback-component-storage
 ```
 
 Change filestorage to
@@ -23,28 +25,43 @@ Change filestorage to
     "root": "./storage"
   }
 ```
-and create directory storage
-```bash
-mkdir storage
-mkdir storage/ngconf
-touch storage/ngconf/README.md
 
-npm install --save loopback-connector-mongodb
-npm install --save loopback-component-storage
+Add Procfile
+```
+web: node server/server.js > Procfile
+```
+
+Create the configuration for heroku with mongo   
+Add a new file `datasources.heroku.js`
+```
+touch server/datasources.heroku.js
+```
+
+```js
+'use strict';
+
+module.exports = {
+    mongo: {
+        connector: 'mongodb',
+        url: process.env.MONGOHQ_URL
+    }
+};
+```
+
+
+
+and create directory storage
+
+```bash
+mkdir -p storage/ngconf
+touch storage/ngconf/README.md
 
 slc loopback:model Image title, geolocation, filename, created_at, updated_at  -> MAKE SURE DATABASE is mongo
 slc loopback:model ImageContainer based on Model -> MAKE SURE DATABASE is filestorage
 ```
 
-
-
 Change the datasource to mongo
 
-
-Show Arc
-```
-slc arc
-```
 
 Add operation hook to Image
 ```js
@@ -69,25 +86,24 @@ module.exports = function(Image) {
 };
 ```
 
-Create the configuration for heroku with mongo   
-Add a new file `datasources.heroku.js
-```js
-'use strict';
-
-module.exports = {
-    mongo: {
-        connector: 'mongodb',
-        url: process.env.MONGOHQ_URL
-    }
-};
+Show Arc
+```
+slc arc
 ```
 
-Create a mongolab database thaiat/***
-test/test
 
-Add Procfile
+Create a mongolab database 
+thaiat/***   
+test/test   
+
+
+
+
+navigate to the heroku app `heroku open`
+
+Generate client side
 ```
-web: node server/server.js
+lb-ng server/server.js ./client/lbServices.js
 ```
 
 Publish to heroku
@@ -100,14 +116,6 @@ heroku config:set NODE_ENV=heroku
 git push heroku
 ```
 
-navigate to the heroku app `heroku open`
-
-Generate client side
-```
-lb-ng server/server.js ./client/lbServices.js
-```
-
-
 
 #Client
 
@@ -117,8 +125,7 @@ yo angular-famous-ionic --mobile
 yo angular-famous-ionic:module common
 yo angular-famous-ionic:constant common loopbackConstant
 yo angular-famous-ionic:controller common home
-npm install --save yoobic-angular-core
-npm install --save angular-moment
+npm install --save yoobic-angular-core angular-moment
 ```
 
 ### Copy lbServices.js
@@ -306,7 +313,8 @@ gulp cordova:all
 
 
 ## TestFairy
-add api upload key : 7422cf17c862ecca807a817e2c1f2c06567cf62a to gulp_tasks/common/constants.js`
+Add api upload key : `7422cf17c862ecca807a817e2c1f2c06567cf62a` to `gulp_tasks/common/constants.js`
+
 Add plugins in hook
 ```
 'org.apache.cordova.device',
@@ -331,7 +339,7 @@ Add testfairy initialization in main.js
 if($window.TestFairy) {
     $window.TestFairy.begin('9d85ea005720f0b65a824114d53b0bce5a958581');
 }
-``
+```
 
 gulp cordova:all
 
