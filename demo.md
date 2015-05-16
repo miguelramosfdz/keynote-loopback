@@ -28,7 +28,7 @@ Change filestorage to
 
 Add Procfile
 ```
-web: node server/server.js > Procfile
+echo "web: node server/server.js" > Procfile
 ```
 
 Create the configuration for heroku with mongo   
@@ -49,12 +49,10 @@ module.exports = {
 ```
 
 
-
 and create directory storage
 
 ```bash
-mkdir -p storage/ngconf
-touch storage/ngconf/README.md
+mkdir -p storage/ngconf && touch storage/ngconf/README.md
 
 slc loopback:model Image title, geolocation, filename, created_at, updated_at  -> MAKE SURE DATABASE is mongo
 slc loopback:model ImageContainer based on Model -> MAKE SURE DATABASE is filestorage
