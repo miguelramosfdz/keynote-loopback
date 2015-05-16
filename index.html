@@ -171,7 +171,7 @@
                         <li class="fragment">Not authorized (AAA)</li>
                         <li class="fragment">Combine multiple DBs</li>
                         <li class="fragment">Too much data</li>
-                        <li class="fragment">Pre / post processing</li>
+                        <li class="fragment">Pre / post processing, data validation</li>
                         
                     </ul>
                 </div>
@@ -184,15 +184,19 @@
                 <div class='row slide-content'>
                     <ul>
                         <li class="fragment li-mbaas"><a  href="http://www.parse.com"><img src="img/parse.png" class="img-li" /> Parse</a></li>
-                        <p  class="fragment subli">
+                        <!-- <p  class="fragment subli">
                         In 2013, Facebook acquired Parse for a whopping $85 million.
-                        </p>
+                        </p> -->
                         
-                        <li class="fragment li-mbaas"><a href="http://www.firebase.com"><img src="img/azure.png" class="img-li no-border" style="border-radius:0" /> Azure Mobile Services </a></li>
-                        <p  class="fragment subli">Use offline data sync, push notifications, store app data in the cloud or on-premises.</p>
+                        <li class="fragment li-mbaas"><a href="http://azure.microsoft.com/en-in/services/app-service/mobile/"><img src="img/azure.png" class="img-li no-border" style="border-radius:0" /> Azure Mobile Services </a></li>
+                        <!-- <p  class="fragment subli">
+                        Use offline data sync, push notifications, store app data in the cloud or on-premises.
+                        </p> -->
 
                         <li class="fragment li-mbaas"><a href="http://www.anypresence.com"><img src="img/anypresence.png" class="img-li" /> AnyPresence </a></li>
-                        <p  class="fragment subli">One of the few players to offer an integrated mobile platform, starting with the UI design to the business logic to the backend API. It has raised $7.5 million.</p>        
+                        <!-- <p  class="fragment subli">
+                        One of the few players to offer an integrated mobile platform, starting with the UI design to the business logic to the backend API. It has raised $7.5 million.
+                        </p> -->        
                  
                         
                     
@@ -206,11 +210,15 @@
                 <div class='row slide-content'>
                     <ul>
                         <li class="fragment li-mbaas"><a href="http://www.firebase.com"><img src="img/firebase.png" class="img-li" /> Firebase </a></li>
-                        <p  class="fragment subli">Cloud-based storage via APIs that empower iOS, Android, and web developers with real-time data syncing. They were acquired by Google in October, 2014.</p>
+                        <!-- <p  class="fragment subli">
+                        Cloud-based storage via APIs that empower iOS, Android, and web developers with real-time data syncing. They were acquired by Google in October, 2014.
+                        </p> -->
          
                         <li class="fragment li-mbaas"><a href="http://www.kinvey.com"><img src="img/kinvey.png" class="img-li" /> Kinvey </a></li>
-                        <p  class="fragment subli">Recently raised a Series A funding of $5 million.
-                        Kinvey aims at the enterprise market. Strong partnerships with Google and Red Hat. Supports custom code and business logic.</p>
+                        <!-- <p  class="fragment subli">
+                        Recently raised a Series A funding of $5 million.
+                        Kinvey aims at the enterprise market. Strong partnerships with Google and Red Hat. Supports custom code and business logic.
+                        </p> -->
                         
                     </ul>
                 </div>
@@ -247,21 +255,22 @@
             <h2>About <span class="green">StrongLoop</span></h2>
                     
                 <ul>
-                    <li class="fragment">Founded <span class="green">2012</span></li>
+                    <li class="fragment">Created in <span class="green">2012</span></li>
+                     <li class="fragment">Founded Serie A</li>
                     <li class="fragment">Co-founders are main core contributors to Node.js</span></li>
-                    <li class="fragment">Develop and support...
+               <!--      <li class="fragment">Develop and support...
                         <ul>
                             <li><span class="green">Loopback</span>: Open Source Mobile Backend-as-a-Service</li>
                             <li><span class="green">StrongOps</span>: Realtime performance monitoring</li>
                             <li><span class="green">StrongNode</span>: Support for StrongLoop and public Node.js modules</li>
                             
                         </ul>
-                    </li>
-                    <li class="fragment">Also maintains / contribute to the npm ecosystem
-                        <ul>
-                            <li>node-inspector, node-reggie, express, etc...</li>
+                    </li> -->
+                   <!--  <li class="fragment">Also maintains / contribute to the npm ecosystem -->
+                        <ul class="fragment">
+                            <li>express, node-inspector, node-reggie, etc...</li>
                         </ul>
-                    </li>
+            <!--         </li> -->
                 </ul>   
             </section>
 
@@ -304,6 +313,9 @@
             <section>
                 <h2>Full stack ?</h2>
                 <p>Web technologies you already know and love</p>
+                <p class="fragment" >And because it <span class="green">rocks !!!</span>
+                <img src="img/fullstack.jpg" alt="">
+                </p>
                 
                 <aside class="notes">
                     Notes:
@@ -413,7 +425,7 @@ lb-ng server/server client/lbServices.js
             center: true,
             slideNumber: false,
             theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
-            transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+            transition: Reveal.getQueryHash().transition || 'fade', // default/cube/page/concave/zoom/linear/fade/none
 
             // Parallax scrolling
             // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
