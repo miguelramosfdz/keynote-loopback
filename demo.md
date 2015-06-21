@@ -123,7 +123,7 @@ yo mcfly --mobile
 yo mcfly:module common
 yo mcfly:constant common loopbackConstant
 yo mcfly:controller common home
-npm install --save yoobic-angular-core angular-moment
+npm install --save mcfly-angular angular-moment
 ```
 
 ### Copy lbServices.js
@@ -163,9 +163,9 @@ module.exports = function(app) {
 
 require('lbServices');
 require('angular-moment');
-var yoobicUI = require('yoobic-angular-core').ui;
+var mcflyUI = require('mcfly-angular').ui;
 
-['lbServices', yoobicUI.name, 'angularMoment']
+['lbServices', mcflyUI.name, 'angularMoment']
 
 
 controller : fullname + '.home as vm'
@@ -193,7 +193,7 @@ app.config(['LoopBackResourceProvider', fullname + '.loopbackConstant', function
                 <input type="text" name="pictureTitle" placeholder="Your picture title" ng-model="vm.pictureTitle" required>
             </label>
         </form>
-        <div style="margin-left:10px" ng-disabled="!vm.pictureTitle" class="button button-small button-positive button-outline" yoo-image-capture handler="vm.captureHandler" ng-click="vm.doCapture()">
+        <div style="margin-left:10px" ng-disabled="!vm.pictureTitle" class="button button-small button-positive button-outline" mcf-image-capture handler="vm.captureHandler" ng-click="vm.doCapture()">
             <i class="icon ion-camera"></i>
         </div>
     </ion-header-bar>
@@ -246,7 +246,7 @@ var controllername = 'home';
 module.exports = function(app) {
     /*jshint validthis: true */
 
-    var deps = [app.name + '.loopbackConstant', 'Image', 'ImageContainer', 'yoobic.angular.ui.fileStorageLoopback'];
+    var deps = [app.name + '.loopbackConstant', 'Image', 'ImageContainer', 'mcfly.angular.ui.fileStorageLoopback'];
 
     function controller(loopbackConstant, Image, ImageContainer, fileStorageLoopback) {
         var vm = this;
