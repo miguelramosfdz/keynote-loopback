@@ -119,10 +119,10 @@ git push heroku
 
 ## Scaffold the project
 ```bash
-yo angular-famous-ionic --mobile
-yo angular-famous-ionic:module common
-yo angular-famous-ionic:constant common loopbackConstant
-yo angular-famous-ionic:controller common home
+yo mcfly --mobile
+yo mcfly:module common
+yo mcfly:constant common loopbackConstant
+yo mcfly:controller common home
 npm install --save yoobic-angular-core angular-moment
 ```
 
